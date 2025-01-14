@@ -1,9 +1,9 @@
-package com.github.ondrejspanel.intellijprivatepluginauth.services
+package net.opengrabeso.authPlugin.services
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.github.ondrejspanel.intellijprivatepluginauth.MyBundle
+import net.opengrabeso.authPlugin.MyBundle
 
 @Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {

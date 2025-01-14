@@ -1,4 +1,4 @@
-package com.github.ondrejspanel.intellijprivatepluginauth.listeners
+package net.opengrabeso.authPlugin.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger

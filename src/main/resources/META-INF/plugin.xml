@@ -1,19 +1,22 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.ondrejspanel.intellijprivatepluginauth</id>
-    <name>Private Marketplace Auth</name>
-    <vendor>OpenGrabeso</vendor>
+  <id>net.opengrabeso.intellijprivatepluginauth</id>
+  <name>Private Marketplace Auth</name>
+  <vendor>OpenGrabeso</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
-    <depends>org.jetbrains.plugins.github</depends>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>org.jetbrains.plugins.github</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+  <resource-bundle>messages.MyBundle</resource-bundle>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ondrejspanel.intellijprivatepluginauth.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
+  <extensions defaultExtensionNs="com.intellij">
+    <pluginRepositoryAuthProvider
+            implementation="net.opengrabeso.authPlugin.GithubPluginRepositoryAuthProvider"/>
+  </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.ondrejspanel.intellijprivatepluginauth.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+  <!-- Workaround for https://youtrack.jetbrains.com/issue/IDEA-315487 -->
+  <applicationListeners>
+    <listener class="net.opengrabeso.authPlugin.listeners.RepoAuthHotfix"
+              topic="com.intellij.ide.AppLifecycleListener"/>
+  </applicationListeners>
 </idea-plugin>

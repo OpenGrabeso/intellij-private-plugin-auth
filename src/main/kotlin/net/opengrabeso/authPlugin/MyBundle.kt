@@ -1,4 +1,4 @@
-package com.github.ondrejspanel.intellijprivatepluginauth
+package net.opengrabeso.authPlugin
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
