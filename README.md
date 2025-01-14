@@ -17,7 +17,7 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-Authenticate any custom repositories using [GitHub](https://github.com) authentication.
+Authenticate any custom plugin repositories using [GitHub](https://github.com) authentication.
 To configure, open **Settings / Preferences** and go to Version Control | GitHub.
 Requires the [GitHub plugin](https://plugins.jetbrains.com/plugin/13115-github).
 
