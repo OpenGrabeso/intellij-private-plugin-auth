@@ -16,49 +16,53 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
     private fun String.encodeBase64() = Base64.getEncoder().encodeToString(encodeToByteArray())
 
     override fun getAuthHeaders(url: String): Map<String, String> {
-        
-        logger.debug("Getting auth headers for $url")
 
-        val accountManager = ApplicationManager.getApplication().getService(GHAccountManager::class.java)
+        if (!url.contains("jetbrains.com")) {
+            logger.debug("Getting auth headers for $url")
+
+            val accountManager = ApplicationManager.getApplication().getService(GHAccountManager::class.java)
 
 // Access the accountsState StateFlow
-        val accountsState = accountManager.accountsState
+            val accountsState = accountManager.accountsState
 
-        var username: String? = null
-        var token: String? = null
+            var username: String? = null
+            var token: String? = null
 
-        // Use runBlocking to collect the current state (blocking for simplicity in this example)
-        runBlocking {
-            val accounts = accountsState.first() // Get the first emitted value (current state of accounts)
+            // Use runBlocking to collect the current state (blocking for simplicity in this example)
+            runBlocking {
+                val accounts = accountsState.first() // Get the first emitted value (current state of accounts)
 
-            if (accounts.isNotEmpty()) {
-                accounts.forEach { account ->
-                    // Fetch the token for each account
-                    val accountToken = accountManager.findCredentials(account)
+                if (accounts.isNotEmpty()) {
+                    accounts.forEach { account ->
+                        // Fetch the token for each account
+                        val accountToken = accountManager.findCredentials(account)
 
-                    if (accountToken != null) {
-                        username = account.name
-                        token = accountToken
-                    } else {
-                        logger.warn("No token found for account: ${account.name}")
+                        if (accountToken != null) {
+                            username = account.name
+                            token = accountToken
+                        } else {
+                            logger.warn("No token found for account: ${account.name}")
+                        }
                     }
+                } else {
+                    logger.warn("No GitHub accounts found.")
                 }
-            } else {
-                logger.warn("No GitHub accounts found.")
             }
-        }
 
-        logger.debug("Username: $username, token is null? ${token == null}")
-        return if (username != null && token != null) {
-            val encodedValue = "Basic " + "$username:$token".encodeBase64()
-            mapOf("Authorization" to encodedValue)
+            logger.debug("Username: $username, token is null? ${token == null}")
+            return if (username != null && token != null) {
+                val encodedToken = "Bearer $token"
+                mapOf("Authorization" to encodedToken)
+            } else {
+                emptyMap()
+            }
         } else {
-            emptyMap()
+            return emptyMap()
         }
     }
 
     override fun canHandle(url: String): Boolean {
-        val canHandle = !url.contains("jetbrains\\.com")
+        val canHandle = !url.contains("jetbrains.com")
         logger.debug("Can handle $url? $canHandle")
         return canHandle
     }
