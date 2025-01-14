@@ -1,10 +1,11 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.ondrejspanel.intellijprivatepluginauth</id>
-    <name>intellij-private-repo-auth</name>
-    <vendor>ondrejspanel</vendor>
+    <name>Private Marketplace Auth</name>
+    <vendor>OpenGrabeso</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.github</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
