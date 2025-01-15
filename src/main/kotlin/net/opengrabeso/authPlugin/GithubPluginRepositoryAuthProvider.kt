@@ -17,7 +17,7 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
 
     override fun getAuthHeaders(url: String): Map<String, String> {
 
-        if (!url.contains("jetbrains.com")) {
+        if (url.contains("github.com/")) {
             logger.debug("Getting auth headers for $url")
 
             val accountManager = ApplicationManager.getApplication().getService(GHAccountManager::class.java)
@@ -52,7 +52,10 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
             logger.debug("Username: $username, token is null? ${token == null}")
             return if (username != null && token != null) {
                 val encodedToken = "Bearer $token"
-                mapOf("Authorization" to encodedToken)
+                mapOf(
+                    "Authorization" to encodedToken,
+                    "Accept" to "application/vnd.github.raw+json"
+                )
             } else {
                 emptyMap()
             }
@@ -62,7 +65,7 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
     }
 
     override fun canHandle(url: String): Boolean {
-        val canHandle = !url.contains("jetbrains.com")
+        val canHandle = url.contains("github.com/")
         logger.debug("Can handle $url? $canHandle")
         return canHandle
     }
