@@ -13,8 +13,6 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
 
     private val logger = logger<GithubPluginRepositoryAuthProvider>()
 
-    private fun String.encodeBase64() = Base64.getEncoder().encodeToString(encodeToByteArray())
-
     override fun getAuthHeaders(url: String): Map<String, String> {
 
         if (url.contains("github.com/")) {
