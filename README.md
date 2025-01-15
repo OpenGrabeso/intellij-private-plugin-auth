@@ -17,14 +17,14 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-Authenticate any custom plugin repositories using [GitHub](https://github.com) authentication.
+Authenticate any custom plugin repositories using GitHub authentication.
 To configure, open **Settings / Preferences** and go to Version Control | GitHub.
 Requires the [GitHub plugin](https://plugins.jetbrains.com/plugin/13115-github).
 
 The plugins add Authentication: Bearer headers to any requests sent to github.com, allowing you to use your repository
 as a private plugin marketplace. URL to enter as a custom marketplace could look like:
 
-https://api.github.com/repos/organization/plugins/contents/updatePlugins.xml
+`https://api.github.com/repos/organization/plugins/contents/updatePlugins.xml`
 
 
 <!-- Plugin description end -->
