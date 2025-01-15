@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: zulu
-          java-version: 17
+          java-version: 21
 
       # Setup Gradle
       - name: Setup Gradle
@@ -60,10 +60,10 @@ jobs:
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
         env:
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
+          PUBLISH_TOKEN: ${{ secrets.IDEA_MARKETPLACE_DEPLOY }}
+          CERTIFICATE_CHAIN: ${{ secrets.IDEA_MARKETPLACE_CERTIFICATE_CHAIN }}
+          PRIVATE_KEY: ${{ secrets.IDEA_MARKETPLACE_PRIVATE_KEY }}
+          PRIVATE_KEY_PASSWORD: ${{ secrets.IDEA_MARKETPLACE_PRIVATE_KEY_PASSWORD }}
         run: ./gradlew publishPlugin
 
       # Upload artifact as a release asset

@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
   <id>net.opengrabeso.intellijprivatepluginauth</id>
-  <name>Private Marketplace Auth</name>
+  <name>Private GitHub Marketplace Auth</name>
   <vendor>OpenGrabeso</vendor>
 
   <depends>com.intellij.modules.platform</depends>
