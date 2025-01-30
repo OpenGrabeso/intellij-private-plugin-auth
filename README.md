@@ -14,8 +14,6 @@ your GitHub repository as a private plugin marketplace. URL of such custom repos
 
 `https://api.github.com/repos/organization/plugins/contents/updatePlugins.xml`
 
-Security note: be carefull what custom repositories which include `github.com` you add. Any such repository will receive your GitHub token in a request header.
-
 <!-- Plugin description end -->
 
 ## Installation
@@ -37,6 +35,18 @@ Security note: be carefull what custom repositories which include `github.com` y
   Download the [latest release](https://github.com/OpenGrabeso/intellij-private-plugin-auth/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
+
+## Security
+
+The plugin detects URLs which reside on github.com domain or subdomains. The typical use is with https://api.github.com/repos, but any
+other github.com URL which is able to serve a content and accepts Authorization Bearer headers will do.
+
+The URLs are detected against regex `^https://([^/]*[.@])?github\.com/`. This makes sure the token is not added to request made against
+any other repositories. Yet be carful and add any custom repository domain with a due diligence. 
+
+## Privacy / user data policy
+
+The GitHub tokens are just added to the headers. They are never stored or logged by the plugin and are not sent to any other servers. 
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
