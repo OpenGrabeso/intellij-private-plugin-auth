@@ -7,8 +7,10 @@ import org.jetbrains.annotations.PropertyKey
 @NonNls
 private const val BUNDLE = "messages.AuthPluginBundle"
 
+@Suppress("unused")
 object AuthPluginBundle : DynamicBundle(BUNDLE) {
 
+    @Suppress("unused")
     @JvmStatic
     fun message(@PropertyKey(resourceBundle = BUNDLE) key: String, vararg params: Any) =
         getMessage(key, *params)
