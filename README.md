@@ -14,7 +14,7 @@ your GitHub repository as a private plugin marketplace. URL of such custom repos
 
 `https://api.github.com/repos/organization/plugins/contents/updatePlugins.xml`
 
-Security note: be carefull what custom repositories which include `github.com` you add. Any such repository will receive your GitHub token.
+Security note: be carefull what custom repositories which include `github.com` you add. Any such repository will receive your GitHub token in a request header.
 
 <!-- Plugin description end -->
 
