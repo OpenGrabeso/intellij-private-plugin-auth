@@ -21,7 +21,7 @@ your GitHub repository as a private plugin marketplace. URL of such custom repos
 
 - Using the IDE built-in plugin system:
   
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "intellij-private-plugin-auth"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Private GitHub Marketplace Auth"</kbd> >
   <kbd>Install</kbd>
   
 - Using JetBrains Marketplace:
