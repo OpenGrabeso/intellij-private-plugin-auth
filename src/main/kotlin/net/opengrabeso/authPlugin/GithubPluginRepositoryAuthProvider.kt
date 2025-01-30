@@ -13,9 +13,12 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
 
     private val logger = logger<GithubPluginRepositoryAuthProvider>()
 
+    // to prevent token theft, we support only sites on the github.com domain
+    private val accept = Regex("^https://([^/]*[.@])?github\\.com/")
+
     override fun getAuthHeaders(url: String): Map<String, String> {
 
-        if (url.contains("github.com/")) {
+        if (accept.matches(url)) {
             logger.debug("Getting auth headers for $url")
 
             val accountManager = ApplicationManager.getApplication().getService(GHAccountManager::class.java)
@@ -63,7 +66,7 @@ class GithubPluginRepositoryAuthProvider : PluginRepositoryAuthProvider {
     }
 
     override fun canHandle(url: String): Boolean {
-        val canHandle = url.contains("github.com/")
+        val canHandle = accept.matches(url)
         logger.debug("Can handle $url? $canHandle")
         return canHandle
     }
